@@ -38,6 +38,7 @@ class CustomShapeView(context: Context, attrs: AttributeSet?) : View(context, at
         }
     }
 
+    //logic
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         shapes.forEach { shape ->
