@@ -6,26 +6,28 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var customShapeView: CustomShapeView
-    private lateinit var textViewCount: TextView
-    private var shapeCount = 0
+
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        customShapeView = findViewById(R.id.customShapeView)
-        textViewCount = findViewById(R.id.textViewCount)
-        customShapeView.colorArray = intArrayOf (Color.BLUE, Color.CYAN, Color.BLACK, Color.RED)
-        customShapeView.setOnTouchListener { _, event ->
-            if (event.action == MotionEvent.ACTION_DOWN) {
-                shapeCount++
-                if (shapeCount == 10) shapeCount = 0
-                textViewCount.text = shapeCount.toString()
-            }
-            false
+        val myAdapter = MyAdapter(createList())
+        val recyclerView: RecyclerView = findViewById(R.id.items_rv)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = myAdapter
+        myAdapter.submitList(createList())
+    }
+
+    private fun createList(): ArrayList<String> {
+        val list = ArrayList<String>()
+        for (i in 1..20) {
+            list.add("Item $i")
         }
+        return list
     }
 }
