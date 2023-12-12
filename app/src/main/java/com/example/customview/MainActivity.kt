@@ -1,17 +1,13 @@
 package com.example.customview
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Bundle
-import android.view.MotionEvent
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
+
 class MainActivity : AppCompatActivity() {
-
-
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,9 +21,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun createList(): ArrayList<String> {
         val list = ArrayList<String>()
-        for (i in 1..20) {
+        for (i in 1..SIZE_LIST) {
             list.add("Item $i")
         }
         return list
+    }
+    companion object {
+        const val SIZE_LIST = 40
     }
 }

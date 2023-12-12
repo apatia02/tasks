@@ -18,11 +18,13 @@ class MyAdapter(private val data: List<String>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = data[position]
+        var isExpanded = false
+        var isScaled = false
         with(holder.itemLayoutBinding) {
             textView.text = currentItem
             expandButton.setOnClickListener {
-                val rotation = if (holder.expanded) 0f else 180f
-                holder.expanded = !holder.expanded
+                val rotation = if (isExpanded) 0f else 180f
+                isExpanded = !isExpanded
                 expandButton.animate().apply {
                     duration = 500
                     rotation(rotation)
@@ -30,9 +32,9 @@ class MyAdapter(private val data: List<String>) :
                 }
             }
             root.setOnClickListener {
-                val scaleX = if (holder.scaled) 1f else 1.5f
-                val scaleY = if (holder.scaled) 1f else 1.5f
-                holder.scaled = !holder.scaled
+                val scaleX = if (isScaled) 1f else 1.5f
+                val scaleY = if (isScaled) 1f else 1.5f
+                isScaled = !isScaled
                 root.animate().apply {
                     duration = 500
                     scaleX(scaleX)
@@ -56,7 +58,4 @@ class DiffUtilCallback : DiffUtil.ItemCallback<String>() {
 }
 
 class MyViewHolder(val itemLayoutBinding: ItemLayoutBinding) :
-    RecyclerView.ViewHolder(itemLayoutBinding.root) {
-    var expanded: Boolean = false
-    var scaled: Boolean = false
-}
+    RecyclerView.ViewHolder(itemLayoutBinding.root)
