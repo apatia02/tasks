@@ -27,6 +27,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -44,13 +45,13 @@ android {
 
 dependencies {
 
-
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.7.1")
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation ("com.google.dagger:dagger:2.36")
-    kapt ("com.google.dagger:dagger-compiler:2.36")
+    implementation ("com.google.dagger:dagger:2.44")
+    kapt ("com.google.dagger:dagger-compiler:2.44")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")

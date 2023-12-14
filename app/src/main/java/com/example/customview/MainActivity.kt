@@ -10,14 +10,18 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-//    @Inject
-//    lateinit var presenter: PresenterInterface
+    @Inject
+    lateinit var presenter: PresenterInterface
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val appComponent = DaggerAppComponent.builder().appModule(AppModule(application)).build()
-//        appComponent.inject(this)
+
+        val appComponent = (application as MyApplication).appComponent
+
+        val activityComponent = appComponent.activityComponent().create()
+        activityComponent.inject(this)
+
         val myAdapter = MyAdapter(createList())
         val recyclerView: RecyclerView = findViewById(R.id.items_rv)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -27,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun createList(): ArrayList<String> {
         val list = ArrayList<String>()
-        for (i in 1..40) {
+        for (i in 1..presenter.getSizeList()) {
             list.add("Item $i")
         }
         return list
