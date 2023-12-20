@@ -15,19 +15,22 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             app:layout_scrollFlags="scroll|snap">
+
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:title="Title" />
+
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/please"
-                android:textSize="20sp"
                 android:textColor="@color/black"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:textSize="20sp" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
+
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="150dp"
@@ -37,11 +40,11 @@
             app:layout_scrollFlags="scroll|enterAlways" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/items_rv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="fill_vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    <com.example.customview.QuizWidget
+        android:id="@+id/quizWidget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
